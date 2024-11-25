@@ -1,28 +1,28 @@
-name: Apply Terraform Configuration
+name: Destroy Terraform Configuration
 
 on:
   workflow_dispatch: # This makes the workflow manually triggerable
 
 jobs:
-  terraform-apply:
+  terraform-destroy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v3 
+      
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.0 # Replace with the version you want
-
-      - name: Initialize Terraform
-        run: terraform init
-
-      - name: Set AWS Credentials
+          
+      - name: Destroy Terraform Configuration
+        run: terraform destroy -auto-approve
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
 
-      - name: Apply Terraform Configuration
-        run: terraform apply -auto-approve
+
+      - name: Distroy Terraform
+        run: terraform destroy -auto-approve
