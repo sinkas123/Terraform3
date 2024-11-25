@@ -1,0 +1,23 @@
+name: Destroy Terraform Configuration
+
+on:
+  workflow_dispatch: # This makes the workflow manually triggerable
+
+jobs:
+  terraform-destroy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0 # Replace with the version you want
+      
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Destroy Terraform Configuration
+        run: terraform destroy -auto-approve
