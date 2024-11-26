@@ -14,6 +14,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
+backend "s3" {
+    bucket         = "terraform-state-kazem-sindy"
+    key            = "terraform/state/terraform.tfstate"
+    region         = "us-east-1"
+  }
+
 # Data source to fetch the latest Ubuntu AMI
 data "aws_ami" "ubuntu" {
   most_recent = true
