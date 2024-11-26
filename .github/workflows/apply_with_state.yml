@@ -37,10 +37,12 @@ jobs:
 
       # Terraform Init with backend configuration
       - name: Terraform Init
-        run: terraform init -backend-config="bucket=$TF_BUCKET" \
-                            -backend-config="key=terraform/state/terraform.tfstate" \
-                            -backend-config="region=us-east-1" \
-                            -backend-config="dynamodb_table=$TF_DYNAMODB_TABLE"
+        run: |
+          terraform init \
+            -backend-config="bucket=${TF_BUCKET}" \
+            -backend-config="key=terraform/state/terraform.tfstate" \
+            -backend-config="region=us-east-1" \
+            -backend-config="dynamodb_table=${TF_DYNAMODB_TABLE}"
 
       # Terraform Apply
       - name: Terraform Apply
