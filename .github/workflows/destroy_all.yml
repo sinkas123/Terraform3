@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "TF_BUCKET=terraform-state-kazem-sindy" >> $GITHUB_ENV
 
-      # Terraform Init with backend configuration
+      # Terraform Init with backend configuration 
       - name: Terraform Init
         run: |
           terraform init \
