@@ -7,6 +7,11 @@ terraform {
     }
   }
   required_version = ">= 1.3.0"
+backend "s3" {
+    bucket         = "terraform-state-kazem-sindy"
+    key            = "terraform/state/terraform.tfstate"
+    region         = "us-east-1"
+  }
 }
 
 # Configure the AWS provider
@@ -14,11 +19,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-backend "s3" {
-    bucket         = "terraform-state-kazem-sindy"
-    key            = "terraform/state/terraform.tfstate"
-    region         = "us-east-1"
-  }
+
 
 # Data source to fetch the latest Ubuntu AMI
 data "aws_ami" "ubuntu" {
