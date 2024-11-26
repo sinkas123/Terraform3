@@ -32,7 +32,7 @@ jobs:
       # Set environment variables for Terraform backend
       - name: Set Environment Variables
         run: |
-          echo "TF_BUCKET=images-project-sindy-kazem" >> $GITHUB_ENV
+          echo "TF_BUCKET=terraform-state-kazem-sindy" >> $GITHUB_ENV
           echo "TF_DYNAMODB_TABLE=your-dynamodb-table-name" >> $GITHUB_ENV
 
       # Terraform Init with backend configuration
