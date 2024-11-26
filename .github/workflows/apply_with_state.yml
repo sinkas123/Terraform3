@@ -33,7 +33,6 @@ jobs:
       - name: Set Environment Variables
         run: |
           echo "TF_BUCKET=terraform-state-kazem-sindy" >> $GITHUB_ENV
-          echo "TF_DYNAMODB_TABLE=your-dynamodb-table-name" >> $GITHUB_ENV
 
       # Terraform Init with backend configuration
       - name: Terraform Init
@@ -41,8 +40,7 @@ jobs:
           terraform init \
             -backend-config="bucket=${TF_BUCKET}" \
             -backend-config="key=terraform/state/terraform.tfstate" \
-            -backend-config="region=us-east-1" \
-            -backend-config="dynamodb_table=${TF_DYNAMODB_TABLE}"
+            -backend-config="region=us-east-1"
 
       # Terraform Apply
       - name: Terraform Apply
